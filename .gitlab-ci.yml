@@ -9,7 +9,8 @@ build:
   stage: build
   image: docker:latest
   only:
-    - schedules
+    refs:
+      - schedules
     changes:
       - Dockerfile
   before_script:
