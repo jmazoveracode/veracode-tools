@@ -2,9 +2,12 @@ variables:
   HUB_REGISTRY: "https://index.docker.io/v1/"
   HUB_REGISTRY_IMAGE: "ctcampbellcom/veracode-tools"
 
+services:
+  - docker:dind
+
 build:
   stage: build
-  image: docker:dind
+  image: docker:latest
   before_script:
     - docker login -u $HUB_REGISTRY_USER -p $HUB_REGISTRY_PASSWORD $HUB_REGISTRY
   script:
