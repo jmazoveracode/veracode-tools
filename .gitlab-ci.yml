@@ -9,9 +9,9 @@ build:
   stage: build
   image: docker:latest
   before_script:
-    - docker login -u $HUB_REGISTRY_USER -p $HUB_REGISTRY_PASSWORD $HUB_REGISTRY
+    - docker login -u $HUB_REGISTRY_USER -p "$HUB_REGISTRY_PASSWORD" $HUB_REGISTRY
   script:
-    - docker build --pull -t "$HUB_REGISTRY_IMAGE" .
+    - docker build --pull -t $HUB_REGISTRY_IMAGE .
     - docker push "$HUB_REGISTRY_IMAGE"
   only:
     - master
