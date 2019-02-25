@@ -31,3 +31,5 @@ RUN VERACODE_WRAPPER_VERSION=$(curl -sS "https://search.maven.org/solrsearch/sel
 
 RUN curl -sS -O https://downloads.veracode.com/securityscan/gl-scanner-java-LATEST.zip \
 && unzip gl-scanner-java-LATEST.zip gl-scanner-java.jar && rm -f gl-scanner-java-LATEST.zip
+
+WORKDIR /workspace
