@@ -6,7 +6,7 @@ Docker image with all Veracode tools pre-installed. This is not an official Vera
 
 ## Java API Wrapper
 
-    docker run -it ctcampbellcom/veracode-tools java -jar veracode-wrapper.jar
+    docker run -it --rm ctcampbellcom/veracode-tools java -jar veracode-wrapper.jar
 
 ## Python/HTTPie
 
