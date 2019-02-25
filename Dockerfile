@@ -1,12 +1,12 @@
 FROM openjdk:11
 
 RUN apt-get update \
-&& apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+&& apt-get install -y apt-transport-https make build-essential libssl-dev zlib1g-dev libbz2-dev \
 libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
 xz-utils tk-dev libffi-dev liblzma-dev python-openssl git zip jq \
 && rm -rf /var/lib/apt/lists/*
 
-ENV PATH="/root/.pyenv/bin:${PATH}"
+ENV PATH="/root/.pyenv/bin:/root/.pyenv/shims/:${PATH}"
 RUN curl -s https://pyenv.run | bash \
 && echo 'eval "$(pyenv init -)"\neval "$(pyenv virtualenv-init -)"' > /root/.bashrc \
 && . /root/.bashrc \
@@ -18,6 +18,11 @@ RUN curl -s https://pyenv.run | bash \
 && curl -sS -O https://downloads.veracode.com/securityscan/hmac/python/security_apisigning_python-17.9.1-py2-none-any.whl \
 && pip install --upgrade pip \
 && pip install security_apisigning_python-17.9.1-py2-none-any.whl
+
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DF7DD7A50B746DD4 \
+&& echo 'deb https://download.sourceclear.com/ubuntu stable/' > /etc/apt/sources.list.d/srcclr.list \
+&& apt-get update \
+&& apt-get install srcclr
 
 WORKDIR /veracode
 
