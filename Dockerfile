@@ -15,9 +15,8 @@ RUN curl -s https://pyenv.run | bash \
 && pyenv install $PYENV_LATEST_V2 \
 && pyenv install $PYENV_LATEST \
 && pyenv global $PYENV_LATEST_V2 \
-&& curl -sS -O https://downloads.veracode.com/securityscan/hmac/python/security_apisigning_python-17.9.1-py2-none-any.whl \
 && pip install --upgrade pip \
-&& pip install security_apisigning_python-17.9.1-py2-none-any.whl
+&& pip install https://downloads.veracode.com/securityscan/hmac/python/security_apisigning_python-17.9.1-py2-none-any.whl
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DF7DD7A50B746DD4 \
 && echo 'deb https://download.sourceclear.com/ubuntu stable/' > /etc/apt/sources.list.d/srcclr.list \
