@@ -18,5 +18,3 @@ build:
   script:
     - docker build --no-cache --pull -t $HUB_REGISTRY_IMAGE .
     - docker push "$HUB_REGISTRY_IMAGE"
-  only:
-    - master
