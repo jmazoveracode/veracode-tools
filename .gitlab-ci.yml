@@ -8,6 +8,10 @@ services:
 build:
   stage: build
   image: docker:latest
+  only:
+    - schedules
+    changes:
+      - Dockerfile
   before_script:
     - docker login -u $HUB_REGISTRY_USER -p "$HUB_REGISTRY_PASSWORD" $HUB_REGISTRY
   script:
