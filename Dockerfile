@@ -1,14 +1,12 @@
-FROM openjdk:11
+FROM centos:7
 
-RUN apt-get update \
-&& apt-get install -y apt-transport-https make build-essential libssl-dev zlib1g-dev libbz2-dev \
-libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
-xz-utils tk-dev libffi-dev liblzma-dev python-openssl git zip jq \
-&& rm -rf /var/lib/apt/lists/*
+COPY SRCCLR.repo /etc/yum.repos.d/SRCCLR.repo
+RUN yum update -y && yum install -y epel-release && yum install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel \
+openssl-devel xz xz-devel libffi-devel findutils git gcc gcc-c++ make jq srcclr unzip && yum clean all
 
 ENV PATH="/root/.pyenv/bin:/root/.pyenv/shims/:${PATH}"
 RUN curl -s https://pyenv.run | bash \
-&& echo 'eval "$(pyenv init -)"\neval "$(pyenv virtualenv-init -)"' > /root/.bashrc \
+&& printf 'eval "$(pyenv init -)"\neval "$(pyenv virtualenv-init -)"' > /root/.bashrc \
 && . /root/.bashrc \
 && PYENV_LATEST_V2=$(pyenv install --list | sed 's/^  //' | grep -P '^2.7.\d' | grep -v 'dev\|a\|b' | tail -1) \
 && PYENV_LATEST=$(pyenv install --list | sed 's/^  //' | grep -P '^\d' | grep -v 'dev\|a\|b' | tail -1) \
@@ -17,11 +15,6 @@ RUN curl -s https://pyenv.run | bash \
 && pyenv global $PYENV_LATEST_V2 \
 && pip install --upgrade pip \
 && pip install https://downloads.veracode.com/securityscan/hmac/python/security_apisigning_python-17.9.1-py2-none-any.whl
-
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DF7DD7A50B746DD4 \
-&& echo 'deb https://download.sourceclear.com/ubuntu stable/' > /etc/apt/sources.list.d/srcclr.list \
-&& apt-get update \
-&& apt-get install srcclr
 
 WORKDIR /veracode
 

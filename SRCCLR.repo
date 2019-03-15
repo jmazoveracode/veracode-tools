@@ -1,0 +1,6 @@
+[SourceClear]
+name=SourceClear
+baseurl=https://download.sourceclear.com/redhat/noarch/
+enabled=1
+gpgcheck=1
+gpgkey=https://download.sourceclear.com/redhat/SRCCLR-GPG-KEY
