@@ -35,7 +35,7 @@ then bind mount into the container:
 
 ## SourceClear
 
-You may need to install an appropriate build system for SourceClear. Maven should work without doing any additional installs.
+You may need to install an appropriate build system for SourceClear.
 
 ## Option 1: Bind mount an `agent.yml` file
 

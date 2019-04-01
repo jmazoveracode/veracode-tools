@@ -2,7 +2,7 @@ FROM centos:7
 
 COPY SRCCLR.repo /etc/yum.repos.d/SRCCLR.repo
 RUN yum update -y && yum install -y epel-release && yum install -y zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel \
-openssl-devel xz xz-devel libffi-devel findutils git gcc gcc-c++ make jq srcclr zip unzip && yum clean all
+openssl-devel xz xz-devel libffi-devel findutils git gcc gcc-c++ make jq srcclr zip unzip java-11-openjdk-devel && yum clean all
 
 ENV PATH="/root/.pyenv/bin:/root/.pyenv/shims/:${PATH}"
 RUN curl -s https://pyenv.run | bash \
