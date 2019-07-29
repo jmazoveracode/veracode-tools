@@ -7,16 +7,26 @@ variables:
 services:
   - docker:dind
 
-build:
+build-master:
   stage: build
   image: docker:latest
   only:
-    refs:
-      - schedules
-    changes:
-      - Dockerfile
+    - master
   before_script:
     - docker login -u $HUB_REGISTRY_USER -p "$HUB_REGISTRY_PASSWORD" $HUB_REGISTRY
   script:
-    - docker build --no-cache --pull -t $HUB_REGISTRY_IMAGE .
+    - docker build --no-cache --pull -t "$HUB_REGISTRY_IMAGE" .
     - docker push "$HUB_REGISTRY_IMAGE"
+
+build-branches:
+  stage: build
+  image: docker:latest
+  only:
+    - branches
+  except:
+    - master
+  before_script:
+    - docker login -u $HUB_REGISTRY_USER -p "$HUB_REGISTRY_PASSWORD" $HUB_REGISTRY
+  script:
+    - docker build --no-cache --pull -t "$HUB_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
+    - docker push "$HUB_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
