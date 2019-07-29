@@ -37,12 +37,12 @@ then bind mount into the container:
 
 You may need to install an appropriate build system for SourceClear. Maven should work without doing any additional installs.
 
-## Option 1: Bind mount an `agent.yml` file
+### Option 1: Bind mount an `agent.yml` file
 
     docker run -it -v /source-dir:/workspace -v ~/.srcclr/agent.yml:/root/.srcclr/agent.yml \
     --rm ctcampbellcom/veracode-tools srcclr scan
 
-## Option 2: Provide an environment variable
+### Option 2: Provide an environment variable
 
     docker run -it -v /source-dir:/workspace --env SRCCLR_API_TOKEN=eyJhbGciOi... \
     --rm veracode-tools srcclr scan
