@@ -11,10 +11,7 @@ build-master:
   stage: build
   image: docker:latest
   only:
-    refs:
-      - schedules
-    changes:
-      - Dockerfile
+    - master
   before_script:
     - docker login -u $HUB_REGISTRY_USER -p "$HUB_REGISTRY_PASSWORD" $HUB_REGISTRY
   script:
@@ -25,10 +22,7 @@ build-branches:
   stage: build
   image: docker:latest
   only:
-    refs:
-      - branches
-    changes:
-      - Dockerfile
+    - branches
   except:
     - master
   before_script:
