@@ -1,7 +1,6 @@
 variables:
   HUB_REGISTRY: "https://index.docker.io/v1/"
   HUB_REGISTRY_IMAGE: "ctcampbellcom/veracode-tools"
-  # https://veracode.slack.com/archives/C1XSH0ZNK/p1563894130003800?thread_ts=1563884976.002300&cid=C1XSH0ZNK
   DOCKER_TLS_CERTDIR: ""
 
 services:
