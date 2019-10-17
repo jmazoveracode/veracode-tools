@@ -11,7 +11,7 @@ For all the commands below you can bind mount your application source/build dire
 ## Java API Wrapper
 
     docker run -it -v /source-dir:/workspace \
-    --rm ctcampbellcom/veracode-tools:centos java -jar veracode-wrapper.jar
+    --rm ctcampbellcom/veracode-tools java -jar /veracode/veracode-wrapper.jar
 
 ## Python/HTTPie
 
