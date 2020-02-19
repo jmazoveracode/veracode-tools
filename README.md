@@ -45,4 +45,4 @@ You may need to install an appropriate build system for SourceClear. Maven shoul
 ### Option 2: Provide an environment variable
 
     docker run -it -v /source-dir:/workspace --env SRCCLR_API_TOKEN=eyJhbGciOi... \
-    --rm veracode-tools srcclr scan
+    --rm ctcampbellcom/veracode-tools srcclr scan
