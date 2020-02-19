@@ -15,7 +15,7 @@ RUN curl -s https://pyenv.run | bash \
 && pyenv global $PYENV_LATEST_V2 \
 && pip install --upgrade pip \
 && pip install 'httpie>=0.9.9,<2' \
-&& pip install https://downloads.veracode.com/securityscan/hmac/python/security_apisigning_python-17.9.1-py2-none-any.whl
+&& pip install veracode-api-signing
 
 WORKDIR /veracode
 
